@@ -1,5 +1,7 @@
-from __future__ import annotations
-from abc import ABC, abstractmethod
+from __future__ import annotations # Importing annotations from the future
+from abc import ABC, abstractmethod # Importing abstractmethod from abc (abstract base class)
+
+# Productor - Consumidor
 
 class Creator(ABC):
     """
@@ -7,14 +9,14 @@ class Creator(ABC):
     object of a Product class. The Creator's subclasses usually provide the
     implementation of this method.
     """
-    @abstractmethod
+    @abstractmethod # Decorator for abstractmethod 
 
     def factory_method(self):
         """
         Note that the Creator may also provide some default implementation of
         the factory method.
         """
-        pass
+        pass # For now, pass
 
     def some_operation(self) -> str:
         """
@@ -26,7 +28,7 @@ class Creator(ABC):
         """
 
         # Call the factory method to create a Product object.
-        product = self.factory_method()
+        product = self.factory_method() # The product is going to be consumed by factory_method
 
         # Now, use the product.
         result = f"Creator: The same creator's code has just worked with {product.operation()}"
@@ -38,7 +40,7 @@ Concrete Creators override the factory method in order to change the resulting
 product's type.
 """
 
-class ConcreteCreator1(Creator):
+class ConcreteCreator1(Creator): # Generates product 1
     """
     Note that the signature of the method still uses the abstract product type,
     even though the concrete product is actually returned from the method. This
@@ -48,11 +50,9 @@ class ConcreteCreator1(Creator):
     def factory_method(self) -> Product:
         return ConcreteProduct1()
 
-
-class ConcreteCreator2(Creator):
+class ConcreteCreator2(Creator): # Generates product 2
     def factory_method(self) -> Product:
         return ConcreteProduct2()
-
 
 class Product(ABC):
     """
