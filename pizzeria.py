@@ -1,7 +1,7 @@
-from __future__ import annotations # Importing annotations from the future
-from abc import ABC, abstractmethod # Importing abstractmethod from abc (abstract base class)
+# Patrón Factory Method aplicado a la pizzería
 
-# Productor - Consumidor
+from __future__ import annotations 
+from abc import ABC, abstractmethod 
 
 class Creator(ABC):
     """
@@ -9,14 +9,14 @@ class Creator(ABC):
     object of a Product class. The Creator's subclasses usually provide the
     implementation of this method.
     """
-    @abstractmethod # Decorator for abstractmethod 
+    @abstractmethod 
 
     def factory_method(self):
         """
         Note that the Creator may also provide some default implementation of
         the factory method.
         """
-        pass # For now, pass
+        pass 
 
     def some_operation(self) -> str:
         """
@@ -27,10 +27,8 @@ class Creator(ABC):
         factory method and returning a different type of product from it.
         """
 
-        # Call the factory method to create a Product object.
-        product = self.factory_method() # The product is going to be consumed by factory_method
+        product = self.factory_method() 
 
-        # Now, use the product.
         result = f"Creator: The same creator's code has just worked with {product.operation()}"
 
         return result
@@ -40,7 +38,7 @@ Concrete Creators override the factory method in order to change the resulting
 product's type.
 """
 
-class ConcreteCreator1(Creator): # Generates product 1
+class ConcreteCreator1(Creator):
     """
     Note that the signature of the method still uses the abstract product type,
     even though the concrete product is actually returned from the method. This
@@ -50,7 +48,7 @@ class ConcreteCreator1(Creator): # Generates product 1
     def factory_method(self) -> Product:
         return ConcreteProduct1()
 
-class ConcreteCreator2(Creator): # Generates product 2
+class ConcreteCreator2(Creator): 
     def factory_method(self) -> Product:
         return ConcreteProduct2()
 
